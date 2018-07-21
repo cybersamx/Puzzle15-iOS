@@ -172,8 +172,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2883EDEA210247C000F8789F /* Build configuration list for PBXNativeTarget "Puzzle15" */;
 			buildPhases = (
-				4610A9DE8221BBECA2F330EB /* [CP] Check Pods Manifest.lock */,
+				2883EDF32103018600F8789F /* ShellScript */,
 				2883EDBE210247C000F8789F /* Sources */,
+				4610A9DE8221BBECA2F330EB /* [CP] Check Pods Manifest.lock */,
 				2883EDBF210247C000F8789F /* Frameworks */,
 				2883EDC0210247C000F8789F /* Resources */,
 				F94BA8DD6A9F40A2B70B49A9 /* [CP] Embed Pods Frameworks */,
@@ -299,6 +300,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2883EDF32103018600F8789F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which ${PODS_ROOT}/SwiftLint/swiftlint >/dev/null; then\n    ${PODS_ROOT}/SwiftLint/swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
 		4610A9DE8221BBECA2F330EB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

@@ -28,3 +28,7 @@ A native iOS [15-tile puzzle game](https://en.wikipedia.org/wiki/15_puzzle) usin
    ```bash
    $ open Puzzle15.xcworkspace
    ```
+
+## References
+
+* [Swift coding standards](https://github.com/raywenderlich/swift-style-guide)

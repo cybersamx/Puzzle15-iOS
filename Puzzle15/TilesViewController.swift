@@ -53,12 +53,11 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
-                                                  for: indexPath) as UICollectionViewCell
+                                                  for: indexPath)
 
-    cell.backgroundColor = UIColor(red: CGFloat(drand48()),
-                                   green: CGFloat(drand48()),
-                                   blue: CGFloat(drand48()),
-                                   alpha: CGFloat(drand48()))
+    if let imageCell = cell as? TileCollectionViewCell {
+      imageCell.imageView.image = UIImage(named: "Logo-iOS")
+    }
 
     return cell
   }

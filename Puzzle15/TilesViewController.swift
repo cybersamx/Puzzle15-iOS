@@ -27,10 +27,15 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    // Crop the image.
+    let slicedImages = sliceImage(image: UIImage(named: "Pic-SanFrancisco")!,
+                                                 rows: Constants.cellsPerRow,
+                                                 columns: Constants.cellsPerRow)
+
     // Initialize the array of images.
     for i in 0...Constants.size-1 {
       if i < Constants.size-1 {
-        tiles.append(Tile(index: i, image: UIImage(named: "Logo-iOS")!))
+        tiles.append(Tile(index: i, image: slicedImages[i]))
       } else {
         tiles.append(Tile(index: i))
       }

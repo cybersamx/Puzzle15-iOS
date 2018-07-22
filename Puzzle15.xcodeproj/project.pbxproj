@@ -16,6 +16,7 @@
 		2883EDE6210247C000F8789F /* Puzzle15UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2883EDE5210247C000F8789F /* Puzzle15UITests.swift */; };
 		2883EDF7210487D900F8789F /* TileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2883EDF6210487D900F8789F /* TileCollectionViewCell.swift */; };
 		2883EDF921048B9B00F8789F /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2883EDF821048B9B00F8789F /* Tile.swift */; };
+		2883EDFB2104935400F8789F /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2883EDFA2104935400F8789F /* ImageProcessor.swift */; };
 		7CA43D8A802CB6F579B67C49 /* Pods_Puzzle15.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83B68DC081BF61B722CB20D /* Pods_Puzzle15.framework */; };
 		9B9AAAC7DBBE93C2B2BD3B9A /* Pods_Puzzle15Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC883ECD33BA1071560AD2AB /* Pods_Puzzle15Tests.framework */; };
 		FE7ABBD70E60B87C047BF984 /* Pods_Puzzle15UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C3B399862052F7DDF5ABC67 /* Pods_Puzzle15UITests.framework */; };
@@ -55,6 +56,7 @@
 		2883EDE7210247C000F8789F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2883EDF6210487D900F8789F /* TileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileCollectionViewCell.swift; sourceTree = "<group>"; };
 		2883EDF821048B9B00F8789F /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
+		2883EDFA2104935400F8789F /* ImageProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessor.swift; sourceTree = "<group>"; };
 		2D1FCD28F8C1F417EB993D9E /* Pods-Puzzle15UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Puzzle15UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Puzzle15UITests/Pods-Puzzle15UITests.release.xcconfig"; sourceTree = "<group>"; };
 		6C3B399862052F7DDF5ABC67 /* Pods_Puzzle15UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Puzzle15UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ECAD7EDEC0D6C44D15E974A /* Pods-Puzzle15.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Puzzle15.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Puzzle15/Pods-Puzzle15.debug.xcconfig"; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				2883EDD1210247C000F8789F /* Info.plist */,
 				2883EDF6210487D900F8789F /* TileCollectionViewCell.swift */,
 				2883EDF821048B9B00F8789F /* Tile.swift */,
+				2883EDFA2104935400F8789F /* ImageProcessor.swift */,
 			);
 			path = Puzzle15;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 			files = (
 				2883EDF7210487D900F8789F /* TileCollectionViewCell.swift in Sources */,
 				2883EDC8210247C000F8789F /* TilesViewController.swift in Sources */,
+				2883EDFB2104935400F8789F /* ImageProcessor.swift in Sources */,
 				2883EDC6210247C000F8789F /* AppDelegate.swift in Sources */,
 				2883EDF921048B9B00F8789F /* Tile.swift in Sources */,
 			);

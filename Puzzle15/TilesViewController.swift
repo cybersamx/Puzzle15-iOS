@@ -13,24 +13,33 @@ let reuseIdentifier = "TileCellIdentifer"
 class TilesViewController: UIViewController, UICollectionViewDataSource,
 UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
-  @IBOutlet var collectionView: UICollectionView!
-  var tiles = [Tile]()
+  // Visual components.
+  @IBOutlet weak var collectionView: UICollectionView!
 
+  // Non-visual components.
+  lazy var unsplashManager: UnsplashManager = {
+    return UnsplashManager()
+  }()
+
+  // State variables.
+  var tiles: [Tile] = []
+  var imageMetaIndex = 0  // The current image (referenced by index).
+
+  // Configuration.
   enum Constants {
     static let margin: CGFloat = 8
     static let size = 16
     static let cellsPerRow = 4
   }
 
-  // MARK: UIViewController
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
+  // MARK: Helper functions
 
+  // Slice the image and display the sliced images as tiles.
+  func displayTiles(image: UIImage) {
     // Crop the image.
-    let slicedImages = sliceImage(image: UIImage(named: "Pic-SanFrancisco")!,
-                                                 rows: Constants.cellsPerRow,
-                                                 columns: Constants.cellsPerRow)
+    let slicedImages = sliceImage(image: image,
+                                  rows: Constants.cellsPerRow,
+                                  columns: Constants.cellsPerRow)
 
     // Initialize the array of images.
     for i in 0...Constants.size-1 {
@@ -39,6 +48,42 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
       } else {
         tiles.append(Tile(index: i))
       }
+    }
+
+    self.collectionView.reloadData()
+  }
+
+  // Use an embedded image if no image is retrieved from the Internet.
+  func displayEmbeddedImage() {
+    self.displayTiles(image: UIImage(named: "Pic-SanFrancisco")!)
+  }
+
+  // MARK: UIViewController
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    // Retrieve an image.
+    self.unsplashManager.fetchImagesMetadata { (imagesMetadata) in
+      guard let url = imagesMetadata?[self.imageMetaIndex].url else {
+        print("Can't retrieve image metadata. Slicing default image to tiles...")
+
+        // Use the embedded image.
+        self.displayEmbeddedImage()
+        return
+      }
+
+      self.unsplashManager.fetchImage(url: url, complete: { (image) in
+        guard let image = image else {
+          print("Can't download image. Slicing the default image to tiles...")
+
+          // Use the embedded image.
+          self.displayEmbeddedImage()
+          return
+        }
+
+        self.displayTiles(image: image)
+      })
     }
   }
 
@@ -72,10 +117,11 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
                                                   for: indexPath)
 
-    if let imageCell = cell as? TileCollectionViewCell {
-      imageCell.imageView.image = tiles[indexPath.row].image
+    guard tiles.count > 0, let imageCell = cell as? TileCollectionViewCell else {
+      return cell
     }
 
+    imageCell.imageView.image = tiles[indexPath.row].image
     return cell
   }
 

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>UnsplashAccessKey</key>
+	<string>[Enter Unsplash API access key here - go to https://unsplash.com/developers.]</string>
+	<key>UnsplashSecretKey</key>
+	<string>[Enter Undplash API Secret key here - got to https://unsplash.com/developers.]</string>
+</dict>
+</plist>

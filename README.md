@@ -23,6 +23,14 @@ A native iOS [15-tile puzzle game](https://en.wikipedia.org/wiki/15_puzzle) usin
    $ pod install
    ```
 
+1. Copy the config file and enter your Unsplash API keys
+
+   ```bash
+   $ cd Puzzle15
+   $ cp Puzzle15.plist.example Puzzle.plist
+   $ vi Puzzle15.plist   # Enter your API keys
+   ```
+
 1. Open the project in Xcode and run
 
    ```bash

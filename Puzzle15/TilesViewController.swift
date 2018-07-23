@@ -43,7 +43,7 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
                                   rows: Constants.cellsPerRow,
                                   columns: Constants.cellsPerRow)
 
-    // Initialize the array of images.
+    // Initialize the array of tiles.
     tiles.removeAll()
     for i in 0...Constants.size-1 {
       if i < Constants.size-1 {
@@ -52,6 +52,9 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
         tiles.append(Tile(index: i))
       }
     }
+
+    // Shuffle the tiles.
+    tiles.shuffle()
 
     self.collectionView.reloadData()
     isRefreshEnabled = true

@@ -11,6 +11,8 @@
 		283DA32F21052A870035CEFC /* ImageMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283DA32E21052A870035CEFC /* ImageMetadata.swift */; };
 		283DA3312105CC5E0035CEFC /* Puzzle15.plist in Resources */ = {isa = PBXBuildFile; fileRef = 283DA3302105CC5E0035CEFC /* Puzzle15.plist */; };
 		283DA3332105CDC10035CEFC /* ConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283DA3322105CDC10035CEFC /* ConfigManager.swift */; };
+		283DA3372105EA130035CEFC /* MutableCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283DA3362105EA130035CEFC /* MutableCollection.swift */; };
+		283DA3392105EAAC0035CEFC /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283DA3382105EAAC0035CEFC /* Sequence.swift */; };
 		2883EDC6210247C000F8789F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2883EDC5210247C000F8789F /* AppDelegate.swift */; };
 		2883EDC8210247C000F8789F /* TilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2883EDC7210247C000F8789F /* TilesViewController.swift */; };
 		2883EDCB210247C000F8789F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2883EDC9210247C000F8789F /* Main.storyboard */; };
@@ -49,6 +51,8 @@
 		283DA32E21052A870035CEFC /* ImageMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMetadata.swift; sourceTree = "<group>"; };
 		283DA3302105CC5E0035CEFC /* Puzzle15.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Puzzle15.plist; sourceTree = "<group>"; };
 		283DA3322105CDC10035CEFC /* ConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigManager.swift; sourceTree = "<group>"; };
+		283DA3362105EA130035CEFC /* MutableCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableCollection.swift; sourceTree = "<group>"; };
+		283DA3382105EAAC0035CEFC /* Sequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequence.swift; sourceTree = "<group>"; };
 		2883EDC2210247C000F8789F /* Puzzle15.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Puzzle15.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2883EDC5210247C000F8789F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2883EDC7210247C000F8789F /* TilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TilesViewController.swift; sourceTree = "<group>"; };
@@ -141,6 +145,8 @@
 				283DA32E21052A870035CEFC /* ImageMetadata.swift */,
 				283DA3302105CC5E0035CEFC /* Puzzle15.plist */,
 				283DA3322105CDC10035CEFC /* ConfigManager.swift */,
+				283DA3362105EA130035CEFC /* MutableCollection.swift */,
+				283DA3382105EAAC0035CEFC /* Sequence.swift */,
 			);
 			path = Puzzle15;
 			sourceTree = "<group>";
@@ -406,11 +412,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				283DA3372105EA130035CEFC /* MutableCollection.swift in Sources */,
 				2883EDF7210487D900F8789F /* TileCollectionViewCell.swift in Sources */,
 				2883EDC8210247C000F8789F /* TilesViewController.swift in Sources */,
 				2883EDFB2104935400F8789F /* ImageFunctions.swift in Sources */,
 				283DA32D210509D70035CEFC /* UnsplashManager.swift in Sources */,
 				2883EDC6210247C000F8789F /* AppDelegate.swift in Sources */,
+				283DA3392105EAAC0035CEFC /* Sequence.swift in Sources */,
 				2883EDF921048B9B00F8789F /* Tile.swift in Sources */,
 				283DA32F21052A870035CEFC /* ImageMetadata.swift in Sources */,
 				283DA3332105CDC10035CEFC /* ConfigManager.swift in Sources */,

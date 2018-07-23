@@ -10,5 +10,5 @@ import Foundation
 import UIKit
 
 class TileCollectionViewCell: UICollectionViewCell {
-  @IBOutlet var imageView: UIImageView!
+  @IBOutlet weak var button: UIButton!
 }

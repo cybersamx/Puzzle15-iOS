@@ -47,9 +47,10 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     tiles.removeAll()
     for i in 0...Constants.size-1 {
       if i < Constants.size-1 {
-        tiles.append(Tile(index: i, image: slicedImages[i]))
+        // Tile index starts from 1.
+        tiles.append(Tile(index: i+1, image: slicedImages[i]))
       } else {
-        tiles.append(Tile(index: i))
+        tiles.append(Tile(index: i+1))
       }
     }
 
@@ -153,7 +154,8 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
       return cell
     }
 
-    imageCell.imageView.image = tiles[indexPath.row].image
+    imageCell.button.setImage(tiles[indexPath.row].image, for: .normal)
+    
     return cell
   }
 

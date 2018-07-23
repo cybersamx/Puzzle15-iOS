@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+// MARK: - Functions
+
 func cropToSquare(image: UIImage) -> UIImage {
   // Due to the DPI, we need to convert a CG image and reconvert back to a UIImage to get the correct
   // width and height. For example: the actual image size is 32x32, so the image object reads 32x32 while

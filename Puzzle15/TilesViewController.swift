@@ -23,7 +23,9 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
   // State variables.
   var tiles: [Tile] = []
-  var imageMetaIndex = 0  // The current image (referenced by index).
+  var imagesMetadata: [ImageMetadata]? = []
+  var isRefreshEnabled = false  // There's no user interaction disablement for UIButtonItem.
+  var imageMetaIndex = 0        // The current image (referenced by index).
 
   // Configuration.
   enum Constants {
@@ -32,7 +34,7 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     static let cellsPerRow = 4
   }
 
-  // MARK: Helper functions
+  // MARK: - Helper functions
 
   // Slice the image and display the sliced images as tiles.
   func displayTiles(image: UIImage) {
@@ -42,6 +44,7 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
                                   columns: Constants.cellsPerRow)
 
     // Initialize the array of images.
+    tiles.removeAll()
     for i in 0...Constants.size-1 {
       if i < Constants.size-1 {
         tiles.append(Tile(index: i, image: slicedImages[i]))
@@ -51,6 +54,7 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     }
 
     self.collectionView.reloadData()
+    isRefreshEnabled = true
   }
 
   // Use an embedded image if no image is retrieved from the Internet.
@@ -58,40 +62,65 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     self.displayTiles(image: UIImage(named: "Pic-SanFrancisco")!)
   }
 
-  // MARK: UIViewController
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-
+  // Retrieve an array of images metadata (so that we can recycle thru) and
+  // load a image to the tiles.
+  func fetchImagesMetadataAndLoadImage() {
     // Retrieve an image.
     self.unsplashManager.fetchImagesMetadata { (imagesMetadata) in
-      guard let url = imagesMetadata?[self.imageMetaIndex].url else {
-        print("Can't retrieve image metadata. Slicing default image to tiles...")
+      self.imagesMetadata = imagesMetadata
+
+      self.loadImage(index: self.imageMetaIndex)
+    }
+  }
+
+  // Load image to the tiles.
+  func loadImage(index: Int) {
+    guard let url = self.imagesMetadata?[index].url else {
+      print("Can't retrieve image metadata. Slicing default image to tiles...")
+
+      // Use the embedded image.
+      self.displayEmbeddedImage()
+      return
+    }
+
+    self.unsplashManager.fetchImage(url: url, complete: { (image) in
+      guard let image = image else {
+        print("Can't download image. Slicing the default image to tiles...")
 
         // Use the embedded image.
         self.displayEmbeddedImage()
         return
       }
 
-      self.unsplashManager.fetchImage(url: url, complete: { (image) in
-        guard let image = image else {
-          print("Can't download image. Slicing the default image to tiles...")
+      self.displayTiles(image: image)
+    })
+  }
 
-          // Use the embedded image.
-          self.displayEmbeddedImage()
-          return
-        }
+  // MARK: Action Handlers
 
-        self.displayTiles(image: image)
-      })
+  @IBAction func refreshButtonDidPress(sender: UIBarButtonItem) {
+    if isRefreshEnabled == false, imagesMetadata!.count < 1 {
+      return
     }
+
+    isRefreshEnabled = false
+    imageMetaIndex = (imageMetaIndex + 1) % (imagesMetadata!.count - 1)
+    loadImage(index: imageMetaIndex)
+  }
+
+  // MARK: - UIViewController
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    fetchImagesMetadataAndLoadImage();
   }
 
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
 
-  // MARK: UICollectionViewDelegateFlowLayout
+  // MARK: - UICollectionViewDelegateFlowLayout
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                       minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -103,7 +132,7 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     return Constants.margin
   }
 
-  // MARK: UICollectionViewDatasource
+  // MARK: - UICollectionViewDatasource
 
   func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
     return 1

@@ -19,6 +19,8 @@ class UnsplashManager {
   init() {
   }
 
+  // MARK: - Functions
+
   func fetchImagesMetadata(complete: @escaping ([ImageMetadata]?) -> Void) {
     // Configure request.
     let url = "https://api.unsplash.com/photos/"

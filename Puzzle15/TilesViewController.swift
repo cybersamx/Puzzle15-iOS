@@ -12,6 +12,12 @@ let reuseIdentifier = "TileCellIdentifer"
 
 class TilesViewController: UIViewController, UICollectionViewDataSource,
 UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+  // Configuration.
+  enum Constants {
+    static let margin: CGFloat = 8
+    static let count = 16
+    static let countPerRow = 4
+  }
 
   // Visual components.
   @IBOutlet weak var collectionView: UICollectionView!
@@ -20,42 +26,20 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
   lazy var unsplashManager: UnsplashManager = {
     return UnsplashManager()
   }()
+  lazy var tilesManager: TilesManager = {
+    return TilesManager(count: Constants.count, countPerRow: Constants.countPerRow)
+  }()
 
   // State variables.
-  var tiles: [Tile] = []
   var imagesMetadata: [ImageMetadata]? = []
   var isRefreshEnabled = false  // There's no user interaction disablement for UIButtonItem.
   var imageMetaIndex = 0        // The current image (referenced by index).
-
-  // Configuration.
-  enum Constants {
-    static let margin: CGFloat = 8
-    static let size = 16
-    static let cellsPerRow = 4
-  }
 
   // MARK: - Helper functions
 
   // Slice the image and display the sliced images as tiles.
   func displayTiles(image: UIImage) {
-    // Crop the image.
-    let slicedImages = sliceImage(image: image,
-                                  rows: Constants.cellsPerRow,
-                                  columns: Constants.cellsPerRow)
-
-    // Initialize the array of tiles.
-    tiles.removeAll()
-    for i in 0...Constants.size-1 {
-      if i < Constants.size-1 {
-        // Tile index starts from 1.
-        tiles.append(Tile(index: i+1, image: slicedImages[i]))
-      } else {
-        tiles.append(Tile(index: i+1))
-      }
-    }
-
-    // Shuffle the tiles.
-    tiles.shuffle()
+    tilesManager.loadAndSliceImage(image: image)
 
     self.collectionView.reloadData()
     isRefreshEnabled = true
@@ -100,13 +84,35 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     })
   }
 
-  // MARK: Action Handlers
+  // MARK: - UICollectionViewDelegate
+
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    let selectedTile = tilesManager.tiles[indexPath.row]
+
+    if tilesManager.moveToEmptyTile(from: selectedTile) {
+      collectionView.reloadData()
+    }
+  }
+
+  func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+    // Only enable cells adjacent to the empty cell selectable.
+    guard let emptyTile = tilesManager.getEmptyTile() else {
+      return false
+    }
+
+    let indices = tilesManager.indicesAdjacentTo(index: emptyTile.currentIndex)
+    return indices.contains(indexPath.row)
+  }
+
+  // MARK: - Action Handlers
 
   @IBAction func refreshButtonDidPress(sender: UIBarButtonItem) {
     if isRefreshEnabled == false, imagesMetadata!.count < 1 {
       return
     }
 
+    // Unsplash returns 10 images by default. We cycle through the set of images when the user
+    // tap the refresh button.
     isRefreshEnabled = false
     imageMetaIndex = (imageMetaIndex + 1) % (imagesMetadata!.count - 1)
     loadImage(index: imageMetaIndex)
@@ -143,25 +149,25 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
   }
 
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return Constants.size
+    return tilesManager.count
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
                                                   for: indexPath)
 
-    guard tiles.count > 0, let imageCell = cell as? TileCollectionViewCell else {
+    guard tilesManager.tiles.count > 0, let imageCell = cell as? TileCollectionViewCell else {
       return cell
     }
 
-    imageCell.button.setImage(tiles[indexPath.row].image, for: .normal)
-    
+    imageCell.imageView.image = tilesManager.tiles[indexPath.row].image
+
     return cell
   }
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                       sizeForItemAt indexPath: IndexPath) -> CGSize {
-    let cellsPerRow = CGFloat(Constants.cellsPerRow)
+    let cellsPerRow = CGFloat(tilesManager.countPerRow)
     let width = (UIScreen.main.bounds.width - (cellsPerRow + 1) * Constants.margin) / cellsPerRow
     let height = (UIScreen.main.bounds.height - (cellsPerRow + 1) * Constants.margin) / cellsPerRow
 

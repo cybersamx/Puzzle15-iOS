@@ -51,20 +51,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="96" height="96"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g3k-tk-yJu">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nk6-Oq-3qz">
                                                     <rect key="frame" x="0.0" y="0.0" width="96" height="96"/>
-                                                    <state key="normal" title="Button"/>
-                                                </button>
+                                                </imageView>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="g3k-tk-yJu" secondAttribute="trailing" id="Sw3-uO-i6a"/>
-                                            <constraint firstAttribute="bottom" secondItem="g3k-tk-yJu" secondAttribute="bottom" id="YKH-0Y-uax"/>
-                                            <constraint firstItem="g3k-tk-yJu" firstAttribute="top" secondItem="jgu-mD-aQD" secondAttribute="top" id="aR5-q4-54j"/>
-                                            <constraint firstItem="g3k-tk-yJu" firstAttribute="leading" secondItem="jgu-mD-aQD" secondAttribute="leading" id="lf9-mC-xcr"/>
+                                            <constraint firstAttribute="trailing" secondItem="Nk6-Oq-3qz" secondAttribute="trailing" id="73x-SZ-dwd"/>
+                                            <constraint firstAttribute="bottom" secondItem="Nk6-Oq-3qz" secondAttribute="bottom" id="VNU-AP-sk9"/>
+                                            <constraint firstItem="Nk6-Oq-3qz" firstAttribute="leading" secondItem="jgu-mD-aQD" secondAttribute="leading" id="Ze4-KJ-dpO"/>
+                                            <constraint firstItem="Nk6-Oq-3qz" firstAttribute="top" secondItem="jgu-mD-aQD" secondAttribute="top" id="jzx-bw-qwr"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="button" destination="g3k-tk-yJu" id="dtV-U0-fj0"/>
+                                            <outlet property="imageView" destination="Nk6-Oq-3qz" id="ulL-17-tOd"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

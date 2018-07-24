@@ -10,16 +10,28 @@ import Foundation
 import UIKit
 
 class Tile {
-  var index: Int
+  var index: Int          // Assigned index
+  var currentIndex: Int   // Current index
   var image: UIImage?
+  var isEmpty: Bool {
+    get {
+      return (image == nil)
+    }
+  }
 
   init(index: Int) {
     self.index = index
+    self.currentIndex = index
     self.image = nil
   }
 
   init(index: Int, image: UIImage) {
     self.index = index
+    self.currentIndex = index
     self.image = image
+  }
+
+  var description: String {
+    return String(format: "Assigned index \(index): current index \(currentIndex)")
   }
 }

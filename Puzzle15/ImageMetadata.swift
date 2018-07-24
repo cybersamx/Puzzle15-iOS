@@ -8,6 +8,8 @@
 
 import Foundation
 
+// Class to represent the image metadata retrieved from Unsplash.
+
 class ImageMetadata {
   var url: String
   var width: Double

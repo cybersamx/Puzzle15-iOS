@@ -11,6 +11,7 @@ import Foundation
 extension MutableCollection {
   // Shuffles the contents of this collection.
   // Credit: https://stackoverflow.com/questions/24026510/how-do-i-shuffle-an-array-in-swift
+  
   mutating func shuffle() {
     let c = count
     guard c > 1 else { return }

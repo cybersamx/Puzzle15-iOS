@@ -85,13 +85,68 @@ class TilesManager {
     return slicedImages
   }
 
+  // Suffle the tiles until we get a solvable set.
   func shuffle() {
-    // Shuffle the tiles.
-    tiles.shuffle()
+    repeat {
+      // Shuffle the tiles.
+      tiles.shuffle()
 
-    // Reindex the current indices.
+      // Reindex the current indices.
+      for i in 0...tiles.count-1 {
+        tiles[i].currentIndex = i
+      }
+    } while !TilesManager.isSolvable(tiles: tiles)
+  }
+
+  // MARK: - Class functions
+
+  // Credits:
+  // 1. Algorithm based on https://www.cs.bham.ac.uk/~mdr/teaching/modules04/java2/TilesSolvability.html
+  // 2. Code modified from https://stackoverflow.com/questions/34570344/check-if-15-puzzle-is-solvable
+
+  static func isSolvable(tiles: [Tile]) -> Bool {
+    // Algorithm assumes NxN grid but we pass a 1-dimension serialized array representing
+    // the puzzle.
+    var parity = 0
+    let gridWith = Int(sqrt(Double(tiles.count)))
+    var row = 0         // The current row we are on.
+    var blankRow = 0    // The row with the blank tile.
+
     for i in 0...tiles.count-1 {
-      tiles[i].currentIndex = i
+      if (i % gridWith == 0) {
+        // Advance to the next row.
+        row += 1
+      }
+
+      if tiles[i].isEmpty {
+        // The blank tile
+        blankRow = row
+        continue
+      }
+
+      if i+1 >= tiles.count {
+        continue
+      }
+
+      for j in i+1...tiles.count-1 {
+        if !tiles[i].isEmpty && !tiles[j].isEmpty && tiles[i].index > tiles[j].index {
+          parity += 1
+        }
+      }
+    }
+
+    if gridWith % 2 == 0 {
+      // Even gird
+      if blankRow % 2 == 0 {
+        // Blank on odd row, counting from bottom.
+        return parity % 2 == 0
+      } else {
+        // Blank on even row, counting from bottom.
+        return parity % 2 != 0
+      }
+    } else {
+      // Odd grid.
+      return parity % 2 == 0
     }
   }
 
@@ -107,7 +162,6 @@ class TilesManager {
     tiles.removeAll()
     for i in 0...count-1 {
       if i < count-1 {
-        // Tile index starts from 1.
         tiles.append(Tile(index: i, image: slicedImages[i]))
       } else {
         tiles.append(Tile(index: i))

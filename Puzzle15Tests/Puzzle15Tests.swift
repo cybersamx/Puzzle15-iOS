@@ -10,6 +10,8 @@ import XCTest
 @testable import Puzzle15
 
 class Puzzle15Tests: XCTestCase {
+  static let tileIcon = UIImage(named: "Logo-iOS")
+
   let tilesManager: TilesManager = {
     let tilesManager = TilesManager(count: 16, countPerRow: 4)
     tilesManager.loadAndSliceImage(image: UIImage(named: "Pic-SanFrancisco")!)
@@ -106,6 +108,93 @@ class Puzzle15Tests: XCTestCase {
     indices = tilesManager.indicesAdjacentTo(index: 15)
     XCTAssert(indices[0] == 14, "index: 15")
     XCTAssert(indices[1] == 11, "index: 15")
+  }
+
+  func testIsSolvableUsingSequentialSolution() {
+    var tiles: [Tile] = []
+
+    for i in 0...14 {
+      tiles.append(Tile(index: i, image: Puzzle15Tests.tileIcon!))
+    }
+    tiles.append(Tile(index: 15))   // No image => empty tile
+
+    XCTAssert(TilesManager.isSolvable(tiles: tiles), "Solvable using sequential tiles set")
+  }
+
+  func testIsSolvableUsingSolution1() {
+    var tiles: [Tile] = []
+
+    // Known solutions taken from: https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
+    tiles.append(Tile(index: 12, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 1, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 9, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 2, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 0, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 11, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 7, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 3, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 4, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 15))   // No image => empty tile
+    tiles.append(Tile(index: 8, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 5, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 14, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 13, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 10, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 6, image: Puzzle15Tests.tileIcon!))
+
+    XCTAssert(TilesManager.isSolvable(tiles: tiles), "Solvable using solution 1")
+  }
+
+  func testIsSolvableUsingSolution2() {
+    var tiles: [Tile] = []
+
+    // Known solutions taken from: https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
+    tiles.append(Tile(index: 5, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 12, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 6, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 9, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 7, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 8, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 10, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 15))   // No image => empty tile
+    tiles.append(Tile(index: 14, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 1, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 11, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 4, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 13, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 2, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 0, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 3, image: Puzzle15Tests.tileIcon!))
+
+    XCTAssert(TilesManager.isSolvable(tiles: tiles), "Solvable using solution 2")
+  }
+
+  func testIsSolvableUsingUnsolvableTiles() {
+    var tiles: [Tile] = []
+
+    // Known unsolvable solutions taken from: https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/
+    tiles.append(Tile(index: 2, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 8, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 0, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 14, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 13, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 10, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 3, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 5, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 12, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 15))   // No image => empty tile
+    tiles.append(Tile(index: 9, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 11, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 1, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 6, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 7, image: Puzzle15Tests.tileIcon!))
+    tiles.append(Tile(index: 4, image: Puzzle15Tests.tileIcon!))
+
+    XCTAssert(!TilesManager.isSolvable(tiles: tiles), "Not solvable")
+  }
+
+  func testIsSolvable() {
+    XCTAssert(TilesManager.isSolvable(tiles: tilesManager.tiles), "TilesManager will always return a solvable set")
   }
 
   func testPerformanceExample() {

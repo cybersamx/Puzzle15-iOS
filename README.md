@@ -40,3 +40,5 @@ A native iOS [15-tile puzzle game](https://en.wikipedia.org/wiki/15_puzzle) usin
 ## References
 
 * [Swift coding standards](https://github.com/raywenderlich/swift-style-guide)
+* [15 puzzle solvability algorithm explained](https://www.cs.bham.ac.uk/~mdr/teaching/modules04/java2/TilesSolvability.html)
+* [15 puzzle solvability code in Java](https://stackoverflow.com/questions/34570344/check-if-15-puzzle-is-solvable)

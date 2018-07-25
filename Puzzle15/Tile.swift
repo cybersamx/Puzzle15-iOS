@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class Tile {
+class Tile: CustomStringConvertible {
   var index: Int          // Assigned index
   var currentIndex: Int   // Current index
   var image: UIImage?
@@ -32,6 +32,6 @@ class Tile {
   }
 
   var description: String {
-    return String(format: "Assigned index \(index): current index \(currentIndex)")
+    return String(format: "Assigned index \(index); current index \(currentIndex); isEmpty \(isEmpty)")
   }
 }

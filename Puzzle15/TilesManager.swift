@@ -152,7 +152,7 @@ class TilesManager {
 
   // MARK: - Instance functions
 
-  func loadAndSliceImage(image: UIImage) {
+  func loadAndSliceImage(image: UIImage, toShuffle: Bool = true) {
     // Crop the image.
     let slicedImages = sliceImage(image: image,
                                   rows: countPerRow,
@@ -169,7 +169,9 @@ class TilesManager {
     }
 
     // Shuffle the tiles.
-    shuffle()
+    if toShuffle {
+      shuffle()
+    }
   }
 
   // Given a tile index, get an array of indices that are adjacent to the tile.
@@ -225,13 +227,21 @@ class TilesManager {
     }
 
     // Move the tile to the empty tile.
-    tiles.remove(at: emptyTile.currentIndex)
-    tiles.insert(from, at: emptyTile.currentIndex)
-    tiles.remove(at: from.currentIndex)
-    tiles.insert(emptyTile, at: from.currentIndex)
+    tiles.swapAt(emptyTile.currentIndex, from.currentIndex)
     let tmpIndex = emptyTile.currentIndex
     emptyTile.currentIndex = from.currentIndex
     from.currentIndex = tmpIndex
+
+    return true
+  }
+
+  func isComplete() -> Bool {
+    for i in 0...tiles.count-1 {
+      // The indices should be sequential, matching the array index.
+      if i != tiles[i].index {
+        return false
+      }
+    }
 
     return true
   }

@@ -110,7 +110,7 @@ class Puzzle15Tests: XCTestCase {
     XCTAssert(indices[1] == 11, "index: 15")
   }
 
-  func testIsSolvableUsingSequentialSolution() {
+  func testIsSolvableUsingSequentialSet() {
     var tiles: [Tile] = []
 
     for i in 0...14 {
@@ -190,11 +190,22 @@ class Puzzle15Tests: XCTestCase {
     tiles.append(Tile(index: 7, image: Puzzle15Tests.tileIcon!))
     tiles.append(Tile(index: 4, image: Puzzle15Tests.tileIcon!))
 
-    XCTAssert(!TilesManager.isSolvable(tiles: tiles), "Not solvable")
+    XCTAssertFalse(TilesManager.isSolvable(tiles: tiles), "Not solvable")
   }
 
   func testIsSolvable() {
     XCTAssert(TilesManager.isSolvable(tiles: tilesManager.tiles), "TilesManager will always return a solvable set")
+  }
+
+  func testIsCompleteUsingSequentialSet() {
+    let sequentialTilesManager = TilesManager(count: 16, countPerRow: 4)
+    sequentialTilesManager.loadAndSliceImage(image: UIImage(named: "Pic-SanFrancisco")!, toShuffle: false)
+
+    XCTAssert(sequentialTilesManager.isComplete(), "Is complete using sequential set")
+  }
+
+  func testIsCompleteUsingShuffledSet() {
+    XCTAssertFalse(tilesManager.isComplete(), "Is complete using shuffled set")
   }
 
   func testPerformanceExample() {

@@ -37,9 +37,18 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
   // MARK: - Helper functions
 
+  // Refresh the tiles set.
+  func refresh() {
+    // Unsplash returns 10 images by default. We cycle through the set of images when the user
+    // tap the refresh button.
+    isRefreshEnabled = false
+    imageMetaIndex = (imageMetaIndex + 1) % (imagesMetadata!.count - 1)
+    loadImage(index: imageMetaIndex)
+  }
+
   // Slice the image and display the sliced images as tiles.
   func displayTiles(image: UIImage) {
-    tilesManager.loadAndSliceImage(image: image)
+    tilesManager.loadAndSliceImage(image: image, toShuffle: false)
 
     self.collectionView.reloadData()
     isRefreshEnabled = true
@@ -92,6 +101,17 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     if tilesManager.moveToEmptyTile(from: selectedTile) {
       collectionView.reloadData()
     }
+
+    // Check the tiles set is complete.
+    if tilesManager.isComplete() {
+      let alert = UIAlertController(title: "Score!!!", message: "You completed the puzzle.", preferredStyle: .alert)
+      let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+      alert.addAction(okAction)
+
+      self.present(alert, animated: true, completion: {
+        self.refresh()
+      })
+    }
   }
 
   func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
@@ -111,11 +131,7 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
       return
     }
 
-    // Unsplash returns 10 images by default. We cycle through the set of images when the user
-    // tap the refresh button.
-    isRefreshEnabled = false
-    imageMetaIndex = (imageMetaIndex + 1) % (imagesMetadata!.count - 1)
-    loadImage(index: imageMetaIndex)
+    refresh()
   }
 
   // MARK: - UIViewController

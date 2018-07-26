@@ -13,9 +13,6 @@ import AlamofireImage
 import SwiftyJSON
 
 class UnsplashManager {
-  enum Constants {
-  }
-  
   init() {
   }
 

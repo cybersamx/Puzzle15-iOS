@@ -16,19 +16,15 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
   enum Constants {
     static let margin: CGFloat = 8
     static let count = 16
-    static let countPerRow = 4
   }
 
   // Visual components.
   @IBOutlet weak var collectionView: UICollectionView!
 
   // Non-visual components.
-  lazy var unsplashManager: UnsplashManager = {
-    return UnsplashManager()
-  }()
-  lazy var tilesManager: TilesManager = {
-    return TilesManager(count: Constants.count, countPerRow: Constants.countPerRow)
-  }()
+  lazy var unsplashManager: UnsplashManager = createUnsplashManager()
+
+  lazy var tilesManager: TilesManager = createTilesManager()
 
   // State variables.
   var imagesMetadata: [ImageMetadata]? = []
@@ -37,12 +33,20 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
   // MARK: - Helper functions
 
+  private func createUnsplashManager() -> UnsplashManager {
+    return UnsplashManager()
+  }
+
+  private func createTilesManager() -> TilesManager {
+    return TilesManager(count: Constants.count)
+  }
+
   // Refresh the tiles set.
-  func refresh() {
+  private func refresh(toNext: Bool = true) {
     // Unsplash returns 10 images by default. We cycle through the set of images when the user
     // tap the refresh button.
     isRefreshEnabled = false
-    imageMetaIndex = (imageMetaIndex + 1) % (imagesMetadata!.count - 1)
+    imageMetaIndex = (toNext) ? (imageMetaIndex + 1) % (imagesMetadata!.count - 1) : imageMetaIndex
     loadImage(index: imageMetaIndex)
   }
 
@@ -50,23 +54,27 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
   func displayTiles(image: UIImage) {
     tilesManager.loadAndSliceImage(image: image, toShuffle: false)
 
-    self.collectionView.reloadData()
+    collectionView.reloadData()
     isRefreshEnabled = true
   }
 
   // Use an embedded image if no image is retrieved from the Internet.
   func displayEmbeddedImage() {
-    self.displayTiles(image: UIImage(named: "Pic-SanFrancisco")!)
+    displayTiles(image: UIImage(named: "Pic-SanFrancisco")!)
   }
 
   // Retrieve an array of images metadata (so that we can recycle thru) and
   // load a image to the tiles.
   func fetchImagesMetadataAndLoadImage() {
     // Retrieve an image.
-    self.unsplashManager.fetchImagesMetadata { (imagesMetadata) in
-      self.imagesMetadata = imagesMetadata
+    unsplashManager.fetchImagesMetadata { [weak self] (imagesMetadata) in
+      guard let sself = self else {
+        return
+      }
 
-      self.loadImage(index: self.imageMetaIndex)
+      sself.imagesMetadata = imagesMetadata
+
+      sself.loadImage(index: sself.imageMetaIndex)
     }
   }
 
@@ -76,20 +84,24 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
       print("Can't retrieve image metadata. Slicing default image to tiles...")
 
       // Use the embedded image.
-      self.displayEmbeddedImage()
+      displayEmbeddedImage()
       return
     }
 
-    self.unsplashManager.fetchImage(url: url, complete: { (image) in
+    unsplashManager.fetchImage(url: url, complete: { [weak self] (image) in
+      guard let sself = self else {
+        return
+      }
+
       guard let image = image else {
         print("Can't download image. Slicing the default image to tiles...")
 
         // Use the embedded image.
-        self.displayEmbeddedImage()
+        sself.displayEmbeddedImage()
         return
       }
 
-      self.displayTiles(image: image)
+      sself.displayTiles(image: image)
     })
   }
 
@@ -105,12 +117,16 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     // Check the tiles set is complete.
     if tilesManager.isComplete() {
       let alert = UIAlertController(title: "Score!!!", message: "You completed the puzzle.", preferredStyle: .alert)
-      let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-      alert.addAction(okAction)
-
-      self.present(alert, animated: true, completion: {
-        self.refresh()
+      let replayAction = UIAlertAction(title: "Replay", style: .default, handler: { (action) in
+        self.refresh(toNext: false)   // Reshuffle the current tiles set.
       })
+      let nextAction = UIAlertAction(title: "Next", style: .default, handler: { (action) in
+        self.refresh(toNext: true)    // Get and shuffle the next tiles set.
+      })
+      alert.addAction(replayAction)
+      alert.addAction(nextAction)
+
+      present(alert, animated: true, completion: nil)
     }
   }
 
@@ -183,7 +199,7 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                       sizeForItemAt indexPath: IndexPath) -> CGSize {
-    let cellsPerRow = CGFloat(tilesManager.countPerRow)
+    let cellsPerRow = CGFloat(tilesManager.gridWidth)
     let width = (UIScreen.main.bounds.width - (cellsPerRow + 1) * Constants.margin) / cellsPerRow
     let height = (UIScreen.main.bounds.height - (cellsPerRow + 1) * Constants.margin) / cellsPerRow
 

@@ -14,9 +14,7 @@ class Tile: CustomStringConvertible {
   var currentIndex: Int   // Current index
   var image: UIImage?
   var isEmpty: Bool {
-    get {
-      return (image == nil)
-    }
+    return (image == nil)
   }
 
   init(index: Int) {

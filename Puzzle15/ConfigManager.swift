@@ -9,7 +9,6 @@
 import Foundation
 
 class ConfigManager {
-
   static let shared = ConfigManager()
 
   var unsplashAccessKey: String

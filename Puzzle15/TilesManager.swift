@@ -9,18 +9,26 @@
 import Foundation
 import UIKit
 
+func sqrtInt(_ x: Int) -> Int {
+  return Int(sqrt(Double(x)))
+}
+
 class TilesManager {
   // Configuration.
-  var count = 16          // Number of tiles.
-  var countPerRow = 4     // Number of tiles per row.
+  var count: Int           // Number of tiles.
 
   // State variables.
   var tiles: [Tile] = []
   var completeImage: UIImage? = nil
 
-  init(count: Int, countPerRow: Int) {
+  // Number of tiles per row.
+  var gridWidth: Int {
+    return sqrtInt(count)
+  }
+
+  // Assumes a NxN
+  init(count: Int) {
     self.count = count
-    self.countPerRow = countPerRow
   }
 
   // MARK: - Private image helper fucntions
@@ -73,8 +81,8 @@ class TilesManager {
     let rowLength: CGFloat = croppedImage.size.height/CGFloat(rows)
     var slicedImages = [UIImage]()
 
-    for i in 0...rows-1 {
-      for j in 0...columns-1 {
+    for i in 0..<rows {
+      for j in 0..<columns {
         let rect = CGRect(x: CGFloat(j)*colLength, y: CGFloat(i)*rowLength,
                           width: colLength, height: rowLength)
         let slicedImage = crop(image: croppedImage, rect: rect)
@@ -92,7 +100,7 @@ class TilesManager {
       tiles.shuffle()
 
       // Reindex the current indices.
-      for i in 0...tiles.count-1 {
+      for i in 0..<tiles.count {
         tiles[i].currentIndex = i
       }
     } while !TilesManager.isSolvable(tiles: tiles)
@@ -108,11 +116,11 @@ class TilesManager {
     // Algorithm assumes NxN grid but we pass a 1-dimension serialized array representing
     // the puzzle.
     var parity = 0
-    let gridWith = Int(sqrt(Double(tiles.count)))
+    let gridWith = sqrtInt(tiles.count)
     var row = 0         // The current row we are on.
     var blankRow = 0    // The row with the blank tile.
 
-    for i in 0...tiles.count-1 {
+    for i in 0..<tiles.count {
       if (i % gridWith == 0) {
         // Advance to the next row.
         row += 1
@@ -128,7 +136,7 @@ class TilesManager {
         continue
       }
 
-      for j in i+1...tiles.count-1 {
+      for j in i+1..<tiles.count {
         if !tiles[i].isEmpty && !tiles[j].isEmpty && tiles[i].index > tiles[j].index {
           parity += 1
         }
@@ -155,12 +163,12 @@ class TilesManager {
   func loadAndSliceImage(image: UIImage, toShuffle: Bool = true) {
     // Crop the image.
     let slicedImages = sliceImage(image: image,
-                                  rows: countPerRow,
-                                  columns: countPerRow)
+                                  rows: gridWidth,
+                                  columns: gridWidth)
 
     // Initialize the array of tiles.
     tiles.removeAll()
-    for i in 0...count-1 {
+    for i in 0..<count {
       if i < count-1 {
         tiles.append(Tile(index: i, image: slicedImages[i]))
       } else {
@@ -186,23 +194,23 @@ class TilesManager {
     }
 
     // Check left.
-    if ((tile!.index + 1) % countPerRow) != 1 {
+    if ((tile!.index + 1) % gridWidth) != 1 {
       adjacentIndices.append(tile!.index - 1)
     }
 
     // Check top.
-    if (tile!.index + 1) > countPerRow {
-      adjacentIndices.append(tile!.index - countPerRow)
+    if (tile!.index + 1) > gridWidth {
+      adjacentIndices.append(tile!.index - gridWidth)
     }
 
     // Check right.
-    if ((tile!.index + 1) % countPerRow) != 0 {
+    if ((tile!.index + 1) % gridWidth) != 0 {
       adjacentIndices.append(tile!.index + 1)
     }
 
     // Check bottom.
-    if (tile!.index + 1) < (count - countPerRow + 1) {
-      adjacentIndices.append(tile!.index + countPerRow)
+    if (tile!.index + 1) < (count - gridWidth + 1) {
+      adjacentIndices.append(tile!.index + gridWidth)
     }
 
     return adjacentIndices
@@ -236,7 +244,7 @@ class TilesManager {
   }
 
   func isComplete() -> Bool {
-    for i in 0...tiles.count-1 {
+    for i in 0..<tiles.count {
       // The indices should be sequential, matching the array index.
       if i != tiles[i].index {
         return false

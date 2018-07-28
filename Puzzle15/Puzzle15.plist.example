@@ -8,7 +8,7 @@
 	<string>[Enter Undplash API Secret key here - got to https://unsplash.com/developers.]</string>
   <key>ShowHint</key>
   <false/>
-  <key>Randomize</key>
+  <key>Shuffle</key>
   <false/>
 </dict>
 </plist>

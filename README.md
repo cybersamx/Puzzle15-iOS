@@ -23,7 +23,7 @@ A native iOS [15-tile puzzle game](https://en.wikipedia.org/wiki/15_puzzle) usin
    $ pod install
    ```
 
-1. Copy the config file and enter your Unsplash API keys
+1. **IMPORTANT**: Copy the config file and enter your Unsplash API keys. You can register for a free account on [Unsplash](https://unsplash.com/oauth/applications).
 
    ```bash
    $ cd Puzzle15

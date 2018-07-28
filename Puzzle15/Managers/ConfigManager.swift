@@ -13,8 +13,16 @@ class ConfigManager {
 
   var unsplashAccessKey: String
   var unsplashSecretKey: String
-  var showHint: Bool
-  var shuffle: Bool
+  var showHint: Bool {
+    didSet {
+      UserDefaults.standard.set(showHint, forKey: "ShowHint")
+    }
+  }
+  var shuffle: Bool {
+    didSet {
+      UserDefaults.standard.set(shuffle, forKey: "Shuffle")
+    }
+  }
 
   private init() {
     guard let path = Bundle.main.path(forResource: "Puzzle15", ofType: "plist"),
@@ -30,7 +38,7 @@ class ConfigManager {
 
     unsplashAccessKey = dict["UnsplashAccessKey"] as! String
     unsplashSecretKey = dict["UnsplashSecretKey"] as! String
-    showHint = dict["ShowHint"] as! Bool
-    shuffle = dict["Randomize"] as! Bool
+    showHint = UserDefaults.standard.bool(forKey: "ShowHint") || dict["ShowHint"] as! Bool
+    shuffle = UserDefaults.standard.bool(forKey: "Shuffle") || dict["Shuffle"] as! Bool
   }
 }

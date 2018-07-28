@@ -60,9 +60,12 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nk6-Oq-3qz">
                                                     <rect key="frame" x="0.0" y="0.0" width="96" height="96"/>
                                                 </imageView>
-                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ol-qR-I1r">
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ol-qR-I1r">
                                                     <rect key="frame" x="24" y="24" width="48" height="48"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="48" id="1f7-0s-DPL"/>
+                                                        <constraint firstAttribute="width" constant="48" id="yZD-UX-3Ge"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="36"/>
                                                     <color key="textColor" white="0.5" alpha="0.59316263686131376" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -71,8 +74,10 @@
                                         </view>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="Nk6-Oq-3qz" secondAttribute="trailing" id="73x-SZ-dwd"/>
+                                            <constraint firstItem="8ol-qR-I1r" firstAttribute="centerX" secondItem="jgu-mD-aQD" secondAttribute="centerX" id="CVu-iX-LX0"/>
                                             <constraint firstAttribute="bottom" secondItem="Nk6-Oq-3qz" secondAttribute="bottom" id="VNU-AP-sk9"/>
                                             <constraint firstItem="Nk6-Oq-3qz" firstAttribute="leading" secondItem="jgu-mD-aQD" secondAttribute="leading" id="Ze4-KJ-dpO"/>
+                                            <constraint firstItem="8ol-qR-I1r" firstAttribute="centerY" secondItem="jgu-mD-aQD" secondAttribute="centerY" id="j1E-nM-017"/>
                                             <constraint firstItem="Nk6-Oq-3qz" firstAttribute="top" secondItem="jgu-mD-aQD" secondAttribute="top" id="jzx-bw-qwr"/>
                                         </constraints>
                                         <connections>
@@ -86,20 +91,12 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="lyC-6n-V8T"/>
                                 </connections>
                             </collectionView>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MhH-OW-BMT">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="oUE-ly-nzH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="MXD-ae-Xpw"/>
-                            <constraint firstItem="MhH-OW-BMT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="V1a-xf-XQ6"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oUE-ly-nzH" secondAttribute="trailing" constant="8" id="aN2-lU-voU"/>
                             <constraint firstItem="oUE-ly-nzH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="cWP-1P-nYW"/>
-                            <constraint firstItem="MhH-OW-BMT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="cY4-kk-SuI"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MhH-OW-BMT" secondAttribute="trailing" id="dFF-OI-phs"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="MhH-OW-BMT" secondAttribute="bottom" id="gZY-p4-E2j"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="oUE-ly-nzH" secondAttribute="bottom" constant="8" id="oIw-3i-C6Q"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -113,7 +110,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="oUE-ly-nzH" id="UN6-ls-rGh"/>
-                        <outlet property="hintOverlay" destination="MhH-OW-BMT" id="1h1-dt-G27"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

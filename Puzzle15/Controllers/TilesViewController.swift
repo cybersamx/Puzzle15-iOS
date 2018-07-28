@@ -182,6 +182,14 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     }
   }
 
+  override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    super.viewWillTransition(to: size, with: coordinator)
+
+    // Orientation change doesn't reload the collection view, which causes a NxM formation of the tiles.
+    // Force a reload of the collection view so that it will recalculate the grid size for a NxN formation.
+    collectionView.reloadData()
+  }
+
   // MARK: - UICollectionViewDelegateFlowLayout
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
@@ -223,12 +231,17 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                       sizeForItemAt indexPath: IndexPath) -> CGSize {
-    let cellsPerRow = CGFloat(tilesManager.gridWidth)
-    let width = (UIScreen.main.bounds.width - (cellsPerRow + 1) * Constants.margin) / cellsPerRow
-    let height = (UIScreen.main.bounds.height - (cellsPerRow + 1) * Constants.margin) / cellsPerRow
+    let gridWidth = CGFloat(tilesManager.gridWidth)
+    let width = (UIScreen.main.bounds.width - (gridWidth + 1) * Constants.margin) / gridWidth
+    let height = (UIScreen.main.bounds.height - (gridWidth + 1) * Constants.margin) / gridWidth
 
     // Make the tile a square.
-    let length = (height > width) ? width : height
+    var length = CGFloat(0)
+    if UIDevice.current.orientation.isPortrait {
+      length = (height > width) ? width : height
+    } else {
+      length = (height > width) ? height : width
+    }
 
     return CGSize(width: length, height: length)
   }

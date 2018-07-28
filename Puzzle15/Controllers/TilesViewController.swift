@@ -136,7 +136,7 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     // Check the tiles set is complete.
     if tilesManager.isComplete() {
-      let alert = UIAlertController(title: "Score!!!", message: "You completed the puzzle.", preferredStyle: .alert)
+      let alert = UIAlertController(title: "Congratulations", message: "You completed the puzzle.", preferredStyle: .alert)
       let replayAction = UIAlertAction(title: "Replay", style: .default, handler: { (action) in
         self.reset(toNext: false)    // Reshuffle the current tiles set.
       })
@@ -212,9 +212,11 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
       return cell
     }
 
+    let tile = tilesManager.tiles[indexPath.row]
     imageCell.imageView.image = tilesManager.tiles[indexPath.row].image
     imageCell.indexLabel.text = String(format: "\(tilesManager.tiles[indexPath.row].index)")
     imageCell.indexLabel.isHidden = !ConfigManager.shared.showHint
+    imageCell.accessibilityIdentifier = String(format: "ImageCell-\(tile.index)")
 
     return cell
   }

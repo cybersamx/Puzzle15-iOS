@@ -37,6 +37,10 @@ A native iOS [15-tile puzzle game](https://en.wikipedia.org/wiki/15_puzzle) usin
    $ open Puzzle15.xcworkspace
    ```
 
+## Test the App
+
+The project includes both unit and UI tests. Select CMD-U to run the tests.
+
 ## References
 
 * [Swift coding standards](https://github.com/raywenderlich/swift-style-guide)

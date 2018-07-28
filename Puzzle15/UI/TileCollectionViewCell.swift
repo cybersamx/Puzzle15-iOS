@@ -11,4 +11,5 @@ import UIKit
 
 class TileCollectionViewCell: UICollectionViewCell {
   @IBOutlet weak var imageView: UIImageView!
+  @IBOutlet weak var indexLabel: UILabel!
 }

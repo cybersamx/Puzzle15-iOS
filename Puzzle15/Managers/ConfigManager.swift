@@ -13,12 +13,16 @@ class ConfigManager {
 
   var unsplashAccessKey: String
   var unsplashSecretKey: String
+  var showHint: Bool
+  var shuffle: Bool
 
   private init() {
     guard let path = Bundle.main.path(forResource: "Puzzle15", ofType: "plist"),
           let dict = NSDictionary(contentsOfFile: path) as? [String: Any?] else {
             unsplashAccessKey = ""
             unsplashSecretKey = ""
+            showHint = false
+            shuffle = false
             print("ERROR! The config file is empty. Make sure Puzzle.plist is populated.")
 
             return
@@ -26,5 +30,7 @@ class ConfigManager {
 
     unsplashAccessKey = dict["UnsplashAccessKey"] as! String
     unsplashSecretKey = dict["UnsplashSecretKey"] as! String
+    showHint = dict["ShowHint"] as! Bool
+    shuffle = dict["Randomize"] as! Bool
   }
 }

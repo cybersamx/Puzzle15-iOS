@@ -6,5 +6,9 @@
 	<string>[Enter Unsplash API access key here - go to https://unsplash.com/developers.]</string>
 	<key>UnsplashSecretKey</key>
 	<string>[Enter Undplash API Secret key here - got to https://unsplash.com/developers.]</string>
+  <key>ShowHint</key>
+  <false/>
+  <key>Randomize</key>
+  <false/>
 </dict>
 </plist>

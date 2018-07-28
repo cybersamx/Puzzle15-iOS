@@ -6,6 +6,7 @@ target 'Puzzle15' do
   pod 'Alamofire', '~> 4.7.0'
   pod 'AlamofireImage', '~> 3.3.0'
   pod 'SwiftyJSON', '~> 4.1.0'
+  pod 'SideMenu', '~> 4.0.0'
 end
 
 target 'Puzzle15Tests' do

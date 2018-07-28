@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SideMenu
 
 let reuseIdentifier = "TileCellIdentifer"
 
@@ -20,16 +21,16 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
   // Visual components.
   @IBOutlet weak var collectionView: UICollectionView!
+  @IBOutlet weak var hintOverlay: UIView!
 
   // Non-visual components.
-  lazy var unsplashManager: UnsplashManager = createUnsplashManager()
-
-  lazy var tilesManager: TilesManager = createTilesManager()
+  private lazy var unsplashManager: UnsplashManager = createUnsplashManager()
+  private lazy var tilesManager: TilesManager = createTilesManager()
 
   // State variables.
-  var imagesMetadata: [ImageMetadata]? = []
-  var isRefreshEnabled = false  // There's no user interaction disablement for UIButtonItem.
-  var imageMetaIndex = 0        // The current image (referenced by index).
+  private var imagesMetadata: [ImageMetadata]? = []
+  private var imageMetaIndex = 0        // The current image (referenced by index).
+  var isResetEnabled = false  // There's no user interaction disablement for UIButtonItem.
 
   // MARK: - Helper functions
 
@@ -41,21 +42,12 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     return TilesManager(count: Constants.count)
   }
 
-  // Refresh the tiles set.
-  private func refresh(toNext: Bool = true) {
-    // Unsplash returns 10 images by default. We cycle through the set of images when the user
-    // tap the refresh button.
-    isRefreshEnabled = false
-    imageMetaIndex = (toNext) ? (imageMetaIndex + 1) % (imagesMetadata!.count - 1) : imageMetaIndex
-    loadImage(index: imageMetaIndex)
-  }
-
   // Slice the image and display the sliced images as tiles.
   func displayTiles(image: UIImage) {
-    tilesManager.loadAndSliceImage(image: image, toShuffle: false)
+    tilesManager.loadAndSliceImage(image: image, toShuffle: ConfigManager.shared.shuffle)
 
     collectionView.reloadData()
-    isRefreshEnabled = true
+    isResetEnabled = true
   }
 
   // Use an embedded image if no image is retrieved from the Internet.
@@ -80,7 +72,7 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
   // Load image to the tiles.
   func loadImage(index: Int) {
-    guard let url = self.imagesMetadata?[index].url else {
+    guard let url = imagesMetadata?[index].url else {
       print("Can't retrieve image metadata. Slicing default image to tiles...")
 
       // Use the embedded image.
@@ -105,6 +97,34 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     })
   }
 
+  // MARK: - Instance Methods
+
+  // Reset the tiles set.
+  func reset(toNext: Bool = false) {
+    if isResetEnabled == false, imagesMetadata!.count == 0 {
+      return
+    }
+
+    // Unsplash returns 10 images by default. We cycle through the set of images when the user
+    // tap the reset button.
+    isResetEnabled = false
+    imageMetaIndex = toNext ?
+      (imageMetaIndex + 1) % (imagesMetadata!.count - 1) : imageMetaIndex
+    loadImage(index: imageMetaIndex)
+  }
+
+  func showHint() {
+    collectionView.reloadData()
+  }
+
+  func showAboutDialog() {
+    let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+    let alert = UIAlertController(title: "About", message: "Alert15\nVersion \(version).", preferredStyle: .alert)
+    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+    alert.addAction(okAction)
+    present(alert, animated: true, completion: nil)
+  }
+
   // MARK: - UICollectionViewDelegate
 
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -118,10 +138,10 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     if tilesManager.isComplete() {
       let alert = UIAlertController(title: "Score!!!", message: "You completed the puzzle.", preferredStyle: .alert)
       let replayAction = UIAlertAction(title: "Replay", style: .default, handler: { (action) in
-        self.refresh(toNext: false)   // Reshuffle the current tiles set.
+        self.reset(toNext: false)    // Reshuffle the current tiles set.
       })
       let nextAction = UIAlertAction(title: "Next", style: .default, handler: { (action) in
-        self.refresh(toNext: true)    // Get and shuffle the next tiles set.
+        self.reset(toNext: true)    // Get and shuffle the next tiles set.
       })
       alert.addAction(replayAction)
       alert.addAction(nextAction)
@@ -140,26 +160,26 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     return indices.contains(indexPath.row)
   }
 
-  // MARK: - Action Handlers
-
-  @IBAction func refreshButtonDidPress(sender: UIBarButtonItem) {
-    if isRefreshEnabled == false, imagesMetadata!.count < 1 {
-      return
-    }
-
-    refresh()
-  }
-
   // MARK: - UIViewController
   
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    navigationItem.title = "Puzzle15"
     fetchImagesMetadataAndLoadImage();
   }
 
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
+  }
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "showMenu" {
+      if let navController = segue.destination as? UISideMenuNavigationController,
+        let menuController = navController.topViewController as? SideMenuViewController {
+        menuController.tilesController = self
+      }
+    }
   }
 
   // MARK: - UICollectionViewDelegateFlowLayout
@@ -193,6 +213,8 @@ UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     }
 
     imageCell.imageView.image = tilesManager.tiles[indexPath.row].image
+    imageCell.indexLabel.text = String(format: "\(tilesManager.tiles[indexPath.row].index)")
+    imageCell.indexLabel.isHidden = !ConfigManager.shared.showHint
 
     return cell
   }

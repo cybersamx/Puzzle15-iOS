@@ -7,22 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		283DA32D210509D70035CEFC /* UnsplashManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283DA32C210509D70035CEFC /* UnsplashManager.swift */; };
-		283DA32F21052A870035CEFC /* ImageMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283DA32E21052A870035CEFC /* ImageMetadata.swift */; };
 		283DA3312105CC5E0035CEFC /* Puzzle15.plist in Resources */ = {isa = PBXBuildFile; fileRef = 283DA3302105CC5E0035CEFC /* Puzzle15.plist */; };
-		283DA3332105CDC10035CEFC /* ConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283DA3322105CDC10035CEFC /* ConfigManager.swift */; };
-		283DA3372105EA130035CEFC /* MutableCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283DA3362105EA130035CEFC /* MutableCollection.swift */; };
-		283DA3392105EAAC0035CEFC /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283DA3382105EAAC0035CEFC /* Sequence.swift */; };
-		283DA33D21065E8B0035CEFC /* TilesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283DA33C21065E8B0035CEFC /* TilesManager.swift */; };
 		2883EDC6210247C000F8789F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2883EDC5210247C000F8789F /* AppDelegate.swift */; };
-		2883EDC8210247C000F8789F /* TilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2883EDC7210247C000F8789F /* TilesViewController.swift */; };
 		2883EDCB210247C000F8789F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2883EDC9210247C000F8789F /* Main.storyboard */; };
 		2883EDCD210247C000F8789F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2883EDCC210247C000F8789F /* Assets.xcassets */; };
 		2883EDD0210247C000F8789F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2883EDCE210247C000F8789F /* LaunchScreen.storyboard */; };
 		2883EDDB210247C000F8789F /* Puzzle15Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2883EDDA210247C000F8789F /* Puzzle15Tests.swift */; };
 		2883EDE6210247C000F8789F /* Puzzle15UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2883EDE5210247C000F8789F /* Puzzle15UITests.swift */; };
-		2883EDF7210487D900F8789F /* TileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2883EDF6210487D900F8789F /* TileCollectionViewCell.swift */; };
-		2883EDF921048B9B00F8789F /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2883EDF821048B9B00F8789F /* Tile.swift */; };
+		289820B9210A86E200ED9D16 /* ConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289820AC210A86E100ED9D16 /* ConfigManager.swift */; };
+		289820BA210A86E200ED9D16 /* UnsplashManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289820AD210A86E100ED9D16 /* UnsplashManager.swift */; };
+		289820BB210A86E200ED9D16 /* TilesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289820AE210A86E100ED9D16 /* TilesManager.swift */; };
+		289820BC210A86E200ED9D16 /* MutableCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289820B0210A86E200ED9D16 /* MutableCollection.swift */; };
+		289820BD210A86E200ED9D16 /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289820B1210A86E200ED9D16 /* Sequence.swift */; };
+		289820BE210A86E200ED9D16 /* ImageMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289820B3210A86E200ED9D16 /* ImageMetadata.swift */; };
+		289820BF210A86E200ED9D16 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289820B4210A86E200ED9D16 /* Tile.swift */; };
+		289820C0210A86E200ED9D16 /* TilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289820B6210A86E200ED9D16 /* TilesViewController.swift */; };
+		289820C1210A86E200ED9D16 /* TileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289820B8210A86E200ED9D16 /* TileCollectionViewCell.swift */; };
+		289820C3210A8D3900ED9D16 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289820C2210A8D3900ED9D16 /* SideMenuViewController.swift */; };
+		289820C5210BC8F700ED9D16 /* Puzzle15.plist.example in Resources */ = {isa = PBXBuildFile; fileRef = 289820C4210BC8F700ED9D16 /* Puzzle15.plist.example */; };
 		7CA43D8A802CB6F579B67C49 /* Pods_Puzzle15.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83B68DC081BF61B722CB20D /* Pods_Puzzle15.framework */; };
 		9B9AAAC7DBBE93C2B2BD3B9A /* Pods_Puzzle15Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC883ECD33BA1071560AD2AB /* Pods_Puzzle15Tests.framework */; };
 		FE7ABBD70E60B87C047BF984 /* Pods_Puzzle15UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C3B399862052F7DDF5ABC67 /* Pods_Puzzle15UITests.framework */; };
@@ -47,16 +49,9 @@
 
 /* Begin PBXFileReference section */
 		2416A877FC4A080A53458AB0 /* Pods-Puzzle15Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Puzzle15Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Puzzle15Tests/Pods-Puzzle15Tests.release.xcconfig"; sourceTree = "<group>"; };
-		283DA32C210509D70035CEFC /* UnsplashManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashManager.swift; sourceTree = "<group>"; };
-		283DA32E21052A870035CEFC /* ImageMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMetadata.swift; sourceTree = "<group>"; };
 		283DA3302105CC5E0035CEFC /* Puzzle15.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Puzzle15.plist; sourceTree = "<group>"; };
-		283DA3322105CDC10035CEFC /* ConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigManager.swift; sourceTree = "<group>"; };
-		283DA3362105EA130035CEFC /* MutableCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableCollection.swift; sourceTree = "<group>"; };
-		283DA3382105EAAC0035CEFC /* Sequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequence.swift; sourceTree = "<group>"; };
-		283DA33C21065E8B0035CEFC /* TilesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TilesManager.swift; sourceTree = "<group>"; };
 		2883EDC2210247C000F8789F /* Puzzle15.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Puzzle15.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2883EDC5210247C000F8789F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2883EDC7210247C000F8789F /* TilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TilesViewController.swift; sourceTree = "<group>"; };
 		2883EDCA210247C000F8789F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2883EDCC210247C000F8789F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2883EDCF210247C000F8789F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -67,8 +62,17 @@
 		2883EDE1210247C000F8789F /* Puzzle15UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Puzzle15UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2883EDE5210247C000F8789F /* Puzzle15UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Puzzle15UITests.swift; sourceTree = "<group>"; };
 		2883EDE7210247C000F8789F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2883EDF6210487D900F8789F /* TileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileCollectionViewCell.swift; sourceTree = "<group>"; };
-		2883EDF821048B9B00F8789F /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
+		289820AC210A86E100ED9D16 /* ConfigManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigManager.swift; sourceTree = "<group>"; };
+		289820AD210A86E100ED9D16 /* UnsplashManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsplashManager.swift; sourceTree = "<group>"; };
+		289820AE210A86E100ED9D16 /* TilesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TilesManager.swift; sourceTree = "<group>"; };
+		289820B0210A86E200ED9D16 /* MutableCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutableCollection.swift; sourceTree = "<group>"; };
+		289820B1210A86E200ED9D16 /* Sequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sequence.swift; sourceTree = "<group>"; };
+		289820B3210A86E200ED9D16 /* ImageMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageMetadata.swift; sourceTree = "<group>"; };
+		289820B4210A86E200ED9D16 /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
+		289820B6210A86E200ED9D16 /* TilesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TilesViewController.swift; sourceTree = "<group>"; };
+		289820B8210A86E200ED9D16 /* TileCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileCollectionViewCell.swift; sourceTree = "<group>"; };
+		289820C2210A8D3900ED9D16 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		289820C4210BC8F700ED9D16 /* Puzzle15.plist.example */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Puzzle15.plist.example; sourceTree = "<group>"; };
 		2D1FCD28F8C1F417EB993D9E /* Pods-Puzzle15UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Puzzle15UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Puzzle15UITests/Pods-Puzzle15UITests.release.xcconfig"; sourceTree = "<group>"; };
 		6C3B399862052F7DDF5ABC67 /* Pods_Puzzle15UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Puzzle15UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ECAD7EDEC0D6C44D15E974A /* Pods-Puzzle15.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Puzzle15.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Puzzle15/Pods-Puzzle15.debug.xcconfig"; sourceTree = "<group>"; };
@@ -132,21 +136,18 @@
 		2883EDC4210247C000F8789F /* Puzzle15 */ = {
 			isa = PBXGroup;
 			children = (
+				289820B5210A86E200ED9D16 /* Controllers */,
+				289820AF210A86E200ED9D16 /* Extensions */,
+				289820AB210A86E100ED9D16 /* Managers */,
+				289820B2210A86E200ED9D16 /* Models */,
+				289820B7210A86E200ED9D16 /* UI */,
 				2883EDC5210247C000F8789F /* AppDelegate.swift */,
-				2883EDC7210247C000F8789F /* TilesViewController.swift */,
 				2883EDC9210247C000F8789F /* Main.storyboard */,
 				2883EDCC210247C000F8789F /* Assets.xcassets */,
 				2883EDCE210247C000F8789F /* LaunchScreen.storyboard */,
 				2883EDD1210247C000F8789F /* Info.plist */,
-				2883EDF6210487D900F8789F /* TileCollectionViewCell.swift */,
-				2883EDF821048B9B00F8789F /* Tile.swift */,
-				283DA32C210509D70035CEFC /* UnsplashManager.swift */,
-				283DA32E21052A870035CEFC /* ImageMetadata.swift */,
+				289820C4210BC8F700ED9D16 /* Puzzle15.plist.example */,
 				283DA3302105CC5E0035CEFC /* Puzzle15.plist */,
-				283DA3322105CDC10035CEFC /* ConfigManager.swift */,
-				283DA3362105EA130035CEFC /* MutableCollection.swift */,
-				283DA3382105EAAC0035CEFC /* Sequence.swift */,
-				283DA33C21065E8B0035CEFC /* TilesManager.swift */,
 			);
 			path = Puzzle15;
 			sourceTree = "<group>";
@@ -167,6 +168,51 @@
 				2883EDE7210247C000F8789F /* Info.plist */,
 			);
 			path = Puzzle15UITests;
+			sourceTree = "<group>";
+		};
+		289820AB210A86E100ED9D16 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				289820AC210A86E100ED9D16 /* ConfigManager.swift */,
+				289820AD210A86E100ED9D16 /* UnsplashManager.swift */,
+				289820AE210A86E100ED9D16 /* TilesManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		289820AF210A86E200ED9D16 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				289820B0210A86E200ED9D16 /* MutableCollection.swift */,
+				289820B1210A86E200ED9D16 /* Sequence.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		289820B2210A86E200ED9D16 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				289820B3210A86E200ED9D16 /* ImageMetadata.swift */,
+				289820B4210A86E200ED9D16 /* Tile.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		289820B5210A86E200ED9D16 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				289820B6210A86E200ED9D16 /* TilesViewController.swift */,
+				289820C2210A8D3900ED9D16 /* SideMenuViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		289820B7210A86E200ED9D16 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				289820B8210A86E200ED9D16 /* TileCollectionViewCell.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		6EBFBC4DD2BA836E041C5F48 /* Frameworks */ = {
@@ -305,6 +351,7 @@
 			files = (
 				283DA3312105CC5E0035CEFC /* Puzzle15.plist in Resources */,
 				2883EDD0210247C000F8789F /* LaunchScreen.storyboard in Resources */,
+				289820C5210BC8F700ED9D16 /* Puzzle15.plist.example in Resources */,
 				2883EDCD210247C000F8789F /* Assets.xcassets in Resources */,
 				2883EDCB210247C000F8789F /* Main.storyboard in Resources */,
 			);
@@ -391,6 +438,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -398,6 +446,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,16 +461,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				283DA3372105EA130035CEFC /* MutableCollection.swift in Sources */,
-				2883EDF7210487D900F8789F /* TileCollectionViewCell.swift in Sources */,
-				2883EDC8210247C000F8789F /* TilesViewController.swift in Sources */,
-				283DA32D210509D70035CEFC /* UnsplashManager.swift in Sources */,
-				283DA33D21065E8B0035CEFC /* TilesManager.swift in Sources */,
+				289820BE210A86E200ED9D16 /* ImageMetadata.swift in Sources */,
+				289820BC210A86E200ED9D16 /* MutableCollection.swift in Sources */,
 				2883EDC6210247C000F8789F /* AppDelegate.swift in Sources */,
-				283DA3392105EAAC0035CEFC /* Sequence.swift in Sources */,
-				2883EDF921048B9B00F8789F /* Tile.swift in Sources */,
-				283DA32F21052A870035CEFC /* ImageMetadata.swift in Sources */,
-				283DA3332105CDC10035CEFC /* ConfigManager.swift in Sources */,
+				289820BF210A86E200ED9D16 /* Tile.swift in Sources */,
+				289820C3210A8D3900ED9D16 /* SideMenuViewController.swift in Sources */,
+				289820BD210A86E200ED9D16 /* Sequence.swift in Sources */,
+				289820C0210A86E200ED9D16 /* TilesViewController.swift in Sources */,
+				289820C1210A86E200ED9D16 /* TileCollectionViewCell.swift in Sources */,
+				289820BB210A86E200ED9D16 /* TilesManager.swift in Sources */,
+				289820BA210A86E200ED9D16 /* UnsplashManager.swift in Sources */,
+				289820B9210A86E200ED9D16 /* ConfigManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,7 +12,6 @@
 		2883EDCB210247C000F8789F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2883EDC9210247C000F8789F /* Main.storyboard */; };
 		2883EDCD210247C000F8789F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2883EDCC210247C000F8789F /* Assets.xcassets */; };
 		2883EDD0210247C000F8789F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2883EDCE210247C000F8789F /* LaunchScreen.storyboard */; };
-		2883EDDB210247C000F8789F /* Puzzle15Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2883EDDA210247C000F8789F /* Puzzle15Tests.swift */; };
 		2883EDE6210247C000F8789F /* Puzzle15UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2883EDE5210247C000F8789F /* Puzzle15UITests.swift */; };
 		289820B9210A86E200ED9D16 /* ConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289820AC210A86E100ED9D16 /* ConfigManager.swift */; };
 		289820BA210A86E200ED9D16 /* UnsplashManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289820AD210A86E100ED9D16 /* UnsplashManager.swift */; };
@@ -25,6 +24,9 @@
 		289820C1210A86E200ED9D16 /* TileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289820B8210A86E200ED9D16 /* TileCollectionViewCell.swift */; };
 		289820C3210A8D3900ED9D16 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289820C2210A8D3900ED9D16 /* SideMenuViewController.swift */; };
 		289820C5210BC8F700ED9D16 /* Puzzle15.plist.example in Resources */ = {isa = PBXBuildFile; fileRef = 289820C4210BC8F700ED9D16 /* Puzzle15.plist.example */; };
+		289820C7210C4D0A00ED9D16 /* AdjacentToTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289820C6210C4D0A00ED9D16 /* AdjacentToTests.swift */; };
+		289820C9210C4D4F00ED9D16 /* IsSolvableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289820C8210C4D4F00ED9D16 /* IsSolvableTests.swift */; };
+		289820CB210C4D7000ED9D16 /* IsCompleteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289820CA210C4D7000ED9D16 /* IsCompleteTests.swift */; };
 		7CA43D8A802CB6F579B67C49 /* Pods_Puzzle15.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83B68DC081BF61B722CB20D /* Pods_Puzzle15.framework */; };
 		9B9AAAC7DBBE93C2B2BD3B9A /* Pods_Puzzle15Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC883ECD33BA1071560AD2AB /* Pods_Puzzle15Tests.framework */; };
 		FE7ABBD70E60B87C047BF984 /* Pods_Puzzle15UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C3B399862052F7DDF5ABC67 /* Pods_Puzzle15UITests.framework */; };
@@ -57,7 +59,6 @@
 		2883EDCF210247C000F8789F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2883EDD1210247C000F8789F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2883EDD6210247C000F8789F /* Puzzle15Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Puzzle15Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2883EDDA210247C000F8789F /* Puzzle15Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Puzzle15Tests.swift; sourceTree = "<group>"; };
 		2883EDDC210247C000F8789F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2883EDE1210247C000F8789F /* Puzzle15UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Puzzle15UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2883EDE5210247C000F8789F /* Puzzle15UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Puzzle15UITests.swift; sourceTree = "<group>"; };
@@ -73,6 +74,9 @@
 		289820B8210A86E200ED9D16 /* TileCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileCollectionViewCell.swift; sourceTree = "<group>"; };
 		289820C2210A8D3900ED9D16 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		289820C4210BC8F700ED9D16 /* Puzzle15.plist.example */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Puzzle15.plist.example; sourceTree = "<group>"; };
+		289820C6210C4D0A00ED9D16 /* AdjacentToTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjacentToTests.swift; sourceTree = "<group>"; };
+		289820C8210C4D4F00ED9D16 /* IsSolvableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsSolvableTests.swift; sourceTree = "<group>"; };
+		289820CA210C4D7000ED9D16 /* IsCompleteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsCompleteTests.swift; sourceTree = "<group>"; };
 		2D1FCD28F8C1F417EB993D9E /* Pods-Puzzle15UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Puzzle15UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Puzzle15UITests/Pods-Puzzle15UITests.release.xcconfig"; sourceTree = "<group>"; };
 		6C3B399862052F7DDF5ABC67 /* Pods_Puzzle15UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Puzzle15UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ECAD7EDEC0D6C44D15E974A /* Pods-Puzzle15.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Puzzle15.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Puzzle15/Pods-Puzzle15.debug.xcconfig"; sourceTree = "<group>"; };
@@ -155,8 +159,10 @@
 		2883EDD9210247C000F8789F /* Puzzle15Tests */ = {
 			isa = PBXGroup;
 			children = (
-				2883EDDA210247C000F8789F /* Puzzle15Tests.swift */,
 				2883EDDC210247C000F8789F /* Info.plist */,
+				289820C6210C4D0A00ED9D16 /* AdjacentToTests.swift */,
+				289820CA210C4D7000ED9D16 /* IsCompleteTests.swift */,
+				289820C8210C4D4F00ED9D16 /* IsSolvableTests.swift */,
 			);
 			path = Puzzle15Tests;
 			sourceTree = "<group>";
@@ -479,7 +485,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2883EDDB210247C000F8789F /* Puzzle15Tests.swift in Sources */,
+				289820CB210C4D7000ED9D16 /* IsCompleteTests.swift in Sources */,
+				289820C9210C4D4F00ED9D16 /* IsSolvableTests.swift in Sources */,
+				289820C7210C4D0A00ED9D16 /* AdjacentToTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

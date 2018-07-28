@@ -223,7 +223,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zSc-SB-XT8">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zSc-SB-XT8">
                                                     <rect key="frame" x="300" y="6" width="51" height="31"/>
                                                     <connections>
                                                         <action selector="shuffleSwitchDidPressWithSender:" destination="V4a-wc-ZD4" eventType="valueChanged" id="yTs-BW-5mw"/>
@@ -231,7 +231,6 @@
                                                 </switch>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="zSc-SB-XT8" firstAttribute="centerY" secondItem="kaf-VQ-mP5" secondAttribute="centerY" id="10c-h4-pFj"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="zSc-SB-XT8" secondAttribute="trailing" constant="10" id="t37-QA-J0G"/>
                                             </constraints>
                                         </tableViewCellContentView>

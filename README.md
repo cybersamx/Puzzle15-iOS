@@ -9,6 +9,8 @@ A native iOS [15-tile puzzle game](https://en.wikipedia.org/wiki/15_puzzle) usin
 * Move the tiles
 * Play the next set of tiles when the puzzle is completed
 
+![Screenshot of Puzzle-15](images/screenshot-puzzle-15.png)
+
 ## Run the App
 
 1. Install Cocoapods

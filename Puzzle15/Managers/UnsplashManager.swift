@@ -13,22 +13,19 @@ import AlamofireImage
 import SwiftyJSON
 
 class UnsplashManager {
-  init() {
-  }
-
   // MARK: - Functions
 
   func fetchImagesMetadata(complete: @escaping ([ImageMetadata]?) -> Void) {
-    // Configure request.
+    // Configure request
     let url = "https://api.unsplash.com/photos/"
     let params = [
-      "client_id": ConfigManager.shared.unsplashAccessKey
+      "client_id": ConfigManager.shared.unsplashAccessKey as Any
     ]
     let headers = [
       "Accept": "application/json"
     ]
 
-    // Make the request.
+    // Make the request
     Alamofire.request(url, method: .get, parameters: params, encoding: URLEncoding.default, headers: headers)
       .validate()
       .responseJSON { (response) in
@@ -57,24 +54,28 @@ class UnsplashManager {
     }
   }
 
-  func fetchImage(url: String, flushCache: Bool = false, complete: @escaping (UIImage?) -> Void) {
-    // Configure request.
+  func fetchImage(urlString: String, flushCache: Bool = false, complete: @escaping (UIImage?) -> Void) {
+    // Configure request
     let params = [
-      "client_id": ConfigManager.shared.unsplashAccessKey
+      "client_id": ConfigManager.shared.unsplashAccessKey as Any
     ]
 
-    // Flush the system image cache.
+    // Flush the system image cache
     if flushCache {
-      let urlRequest = URLRequest(url: URL(string: url)!)
+      guard let url = URL(string: urlString) else {
+        return
+      }
+
+      let urlRequest = URLRequest(url: url)
       URLCache.shared.removeCachedResponse(for: urlRequest)
     }
 
-    // Make the request.
-    Alamofire.request(url, method: .get, parameters: params, encoding: URLEncoding.default, headers: nil)
+    // Make the request
+    Alamofire.request(urlString, method: .get, parameters: params, encoding: URLEncoding.default, headers: nil)
       .validate()
       .responseImage { response in
         guard let image = response.result.value else {
-          print("Failed to fetch image from \(url)\n.Details: \(String(describing: response.result.error))")
+          print("Failed to fetch image from \(urlString)\n.Details: \(String(describing: response.result.error))")
           complete(nil)
           return
         }

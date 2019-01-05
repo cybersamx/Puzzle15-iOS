@@ -64,7 +64,7 @@
                                                     <rect key="frame" x="24" y="24" width="48" height="48"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="48" id="1f7-0s-DPL"/>
-                                                        <constraint firstAttribute="width" constant="48" id="yZD-UX-3Ge"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="48" id="yZD-UX-3Ge"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="36"/>
                                                     <color key="textColor" white="0.5" alpha="0.59316263686131376" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -201,7 +201,9 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="s1V-pk-kte" firstAttribute="centerY" secondItem="wv9-J7-GTf" secondAttribute="centerY" id="H0d-rs-6OM"/>
+                                                <constraint firstItem="wv9-J7-GTf" firstAttribute="leading" secondItem="vOn-uX-iAc" secondAttribute="leading" constant="16" id="PaC-S8-Ogq"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="s1V-pk-kte" secondAttribute="trailing" constant="10" id="StB-4O-KCP"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wv9-J7-GTf" secondAttribute="trailing" constant="16" id="nkn-Um-Lro"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

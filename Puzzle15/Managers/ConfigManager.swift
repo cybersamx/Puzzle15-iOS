@@ -36,9 +36,9 @@ class ConfigManager {
             return
     }
 
-    unsplashAccessKey = dict["UnsplashAccessKey"] as! String
-    unsplashSecretKey = dict["UnsplashSecretKey"] as! String
-    showHint = UserDefaults.standard.bool(forKey: "ShowHint") || dict["ShowHint"] as! Bool
-    shuffle = UserDefaults.standard.bool(forKey: "Shuffle") || dict["Shuffle"] as! Bool
+    unsplashAccessKey = dict["UnsplashAccessKey"] as? String ?? ""
+    unsplashSecretKey = dict["UnsplashSecretKey"] as? String ?? ""
+    showHint = UserDefaults.standard.bool(forKey: "ShowHint")
+    shuffle = UserDefaults.standard.bool(forKey: "Shuffle")
   }
 }

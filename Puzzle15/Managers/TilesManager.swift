@@ -15,13 +15,13 @@ func sqrtInt(_ x: Int) -> Int {
 
 class TilesManager {
   // Configuration.
-  var count: Int           // Number of tiles.
+  var count: Int           // Number of tiles
 
-  // State variables.
+  // State variables
   var tiles: [Tile] = []
   var completeImage: UIImage? = nil
 
-  // Number of tiles per row.
+  // Number of tiles per row
   var gridWidth: Int {
     return sqrtInt(count)
   }
@@ -43,7 +43,7 @@ class TilesManager {
     let contextSize = contextImage.size
     var targetX, targetY, targetWidth, targetHeight: CGFloat
 
-    // Determine the origin to move the image and readjust the size.
+    // Determine the origin to move the image and readjust the size
     if contextSize.width > contextSize.height {
       targetX = ((contextSize.width - contextSize.height) / 2)
       targetY = 0
@@ -58,7 +58,7 @@ class TilesManager {
 
     let rect = CGRect(x: targetX, y: targetY, width: targetWidth, height: targetHeight)
 
-    // Create a bitmap image with the cropped size and then recreate a new UIImage.
+    // Create a bitmap image with the cropped size and then recreate a new UIImage
     let targetCGImage = cgImage.cropping(to: rect)!
     let targetImage = UIImage(cgImage: targetCGImage, scale: 1.0, orientation: image.imageOrientation)
 
@@ -74,7 +74,7 @@ class TilesManager {
   }
 
   private func sliceImage(image: UIImage, rows: Int, columns: Int) -> [UIImage] {
-    // Crop the big image into a square image.
+    // Crop the big image into a square image
     let croppedImage = cropToSquare(image: image)
 
     let colLength: CGFloat = croppedImage.size.width/CGFloat(columns)
@@ -93,13 +93,13 @@ class TilesManager {
     return slicedImages
   }
 
-  // Suffle the tiles until we get a solvable set.
+  // Suffle the tiles until we get a solvable set
   func shuffle() {
     repeat {
-      // Shuffle the tiles.
+      // Shuffle the tiles
       tiles.shuffle()
 
-      // Reindex the current indices.
+      // Reindex the current indices
       for i in 0..<tiles.count {
         tiles[i].currentIndex = i
       }
@@ -114,15 +114,15 @@ class TilesManager {
 
   static func isSolvable(tiles: [Tile]) -> Bool {
     // Algorithm assumes NxN grid but we pass a 1-dimension serialized array representing
-    // the puzzle.
+    // the puzzle
     var parity = 0
     let gridWith = sqrtInt(tiles.count)
-    var row = 0         // The current row we are on.
-    var blankRow = 0    // The row with the blank tile.
+    var row = 0         // The current row we are on
+    var blankRow = 0    // The row with the blank tile
 
     for i in 0..<tiles.count {
       if (i % gridWith == 0) {
-        // Advance to the next row.
+        // Advance to the next row
         row += 1
       }
 
@@ -146,14 +146,14 @@ class TilesManager {
     if gridWith % 2 == 0 {
       // Even gird
       if blankRow % 2 == 0 {
-        // Blank on odd row, counting from bottom.
+        // Blank on odd row, counting from bottom
         return parity % 2 == 0
       } else {
-        // Blank on even row, counting from bottom.
+        // Blank on even row, counting from bottom
         return parity % 2 != 0
       }
     } else {
-      // Odd grid.
+      // Odd grid
       return parity % 2 == 0
     }
   }
@@ -166,7 +166,7 @@ class TilesManager {
                                   rows: gridWidth,
                                   columns: gridWidth)
 
-    // Initialize the array of tiles.
+    // Initialize the array of tiles
     tiles.removeAll()
     for i in 0..<count {
       if i < count-1 {
@@ -176,56 +176,56 @@ class TilesManager {
       }
     }
 
-    // Shuffle the tiles.
+    // Shuffle the tiles
     if toShuffle {
       shuffle()
     }
   }
 
-  // Given a tile index, get an array of indices that are adjacent to the tile.
+  // Given a tile index, get an array of indices that are adjacent to the tile
   func indicesAdjacentTo(index: Int) -> [Int] {
     var adjacentIndices: [Int] = []
-    let tile = tiles.first { (tile) -> Bool in
-      return tile.index == index
+    let foundTile: Tile? = tiles.first { (testTile) -> Bool in
+      return testTile.index == index
     }
 
-    if tile == nil {
+    guard let tile = foundTile else {
       return adjacentIndices
     }
 
     // Check left.
-    if ((tile!.index + 1) % gridWidth) != 1 {
-      adjacentIndices.append(tile!.index - 1)
+    if ((tile.index + 1) % gridWidth) != 1 {
+      adjacentIndices.append(tile.index - 1)
     }
 
     // Check top.
-    if (tile!.index + 1) > gridWidth {
-      adjacentIndices.append(tile!.index - gridWidth)
+    if (tile.index + 1) > gridWidth {
+      adjacentIndices.append(tile.index - gridWidth)
     }
 
     // Check right.
-    if ((tile!.index + 1) % gridWidth) != 0 {
-      adjacentIndices.append(tile!.index + 1)
+    if ((tile.index + 1) % gridWidth) != 0 {
+      adjacentIndices.append(tile.index + 1)
     }
 
     // Check bottom.
-    if (tile!.index + 1) < (count - gridWidth + 1) {
-      adjacentIndices.append(tile!.index + gridWidth)
+    if (tile.index + 1) < (count - gridWidth + 1) {
+      adjacentIndices.append(tile.index + gridWidth)
     }
 
     return adjacentIndices
   }
 
   func getEmptyTile() -> Tile? {
-    let emptyTile = tiles.first { (tile) -> Bool in
-      return tile.isEmpty
+    let emptyTile = tiles.first { (testTile) -> Bool in
+      return testTile.isEmpty
     }
 
     return emptyTile
   }
 
   func moveToEmptyTile(from: Tile) -> Bool {
-    // Sanity check to make sure that the tile is adjacent to empty tile.
+    // Sanity check to make sure that the tile is adjacent to empty tile
     guard let emptyTile = getEmptyTile() else {
       return false
     }
@@ -234,7 +234,7 @@ class TilesManager {
       return false
     }
 
-    // Move the tile to the empty tile.
+    // Move the tile to the empty tile
     tiles.swapAt(emptyTile.currentIndex, from.currentIndex)
     let tmpIndex = emptyTile.currentIndex
     emptyTile.currentIndex = from.currentIndex
@@ -245,7 +245,7 @@ class TilesManager {
 
   func isComplete() -> Bool {
     for i in 0..<tiles.count {
-      // The indices should be sequential, matching the array index.
+      // The indices should be sequential, matching the array index
       if i != tiles[i].index {
         return false
       }
